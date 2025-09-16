@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: nginx
+  repository: ghcr.io/nebed/azure-spot-monitor/azure-spot-monitor
   pullPolicy: IfNotPresent
   tag: ""
 

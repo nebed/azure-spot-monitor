@@ -1,0 +1,7 @@
+.env
+.git*
+deploy
+chart
+*.md
+CODEOWNERS
+Dockerfile

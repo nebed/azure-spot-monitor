@@ -1,0 +1,71 @@
+name: Release
+
+on:
+  push:
+    branches: [ main ]
+  release:
+    types: [created]
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata (tags, labels)
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ghcr.io/${{ github.repository }}/azure-spot-monitor
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+
+  helm:
+    runs-on: ubuntu-latest
+    needs: docker
+    permissions:
+      contents: write
+      packages: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Helm
+        uses: azure/setup-helm@v4
+        with:
+          version: v3.14.0
+
+      - name: Package Helm chart
+        run: helm package charts/azure-spot-monitor
+
+      - name: Log in to GHCR (Helm OCI)
+        run: |
+          echo ${{ secrets.GITHUB_TOKEN }} | helm registry login ghcr.io \
+            --username ${{ github.actor }} \
+            --password-stdin
+
+      - name: Package Helm chart
+        run: |
+          helm package charts/azure-spot-monitor --destination ./charts-dist
+
+      - name: Push Helm chart to GHCR
+        run: |
+          CHART_VERSION=$(yq e '.version' charts/azure-spot-monitor/Chart.yaml)
+          helm push ./charts-dist/azure-spot-monitor-${CHART_VERSION}.tgz \
+            oci://ghcr.io/${{ github.repository }}/charts

@@ -74,27 +74,27 @@ var placementCache = &PlacementScoreCache{
 
 var (
 	spotDiscountMetric = promauto.NewGaugeVec(prometheus.GaugeOpts{
-		Name: "spot_monitor_current_discount",
+		Name: "azure_spot_monitor_current_discount",
 		Help: "The current effective spot discount from original VM price",
 	}, []string{"region", "instance"})
 
 	spotPriceMetric = promauto.NewGaugeVec(prometheus.GaugeOpts{
-		Name: "spot_monitor_spot_price",
+		Name: "azure_spot_monitor_spot_price",
 		Help: "The current spot instance price",
 	}, []string{"region", "instance"})
 
 	spotRegularPriceMetric = promauto.NewGaugeVec(prometheus.GaugeOpts{
-		Name: "spot_monitor_regular_price",
+		Name: "azure_spot_monitor_regular_price",
 		Help: "The original VM price",
 	}, []string{"region", "instance"})
 
 	spotPlacementScoreMetric = promauto.NewGaugeVec(prometheus.GaugeOpts{
-		Name: "spot_monitor_placement_score",
+		Name: "azure_spot_monitor_placement_score",
 		Help: "The current placement score for the spot instance",
 	}, []string{"region", "instance", "zone"})
 
 	spotEvictionRateMetric = promauto.NewGaugeVec(prometheus.GaugeOpts{
-		Name: "spot_monitor_eviction_rate",
+		Name: "azure_spot_monitor_eviction_rate",
 		Help: "The current spot instance eviciton rate",
 	}, []string{"region", "instance"})
 )

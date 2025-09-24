@@ -1,0 +1,28 @@
+# Azure Spot Monitor Helm chart
+
+{{ template "chart.typeBadge" . }}{{ template "chart.versionBadge" . }}{{ template "chart.appVersionBadge" . }}
+
+Helm chart for deploying [Azure Spot Monitor][] to Kubernetes.
+
+## Usage
+
+### Install chart
+
+First provide the required parameters in a `values.yaml` file.
+```yaml
+# ./values.yaml
+azure:
+  resourceGroupName: "<resource-group-name>"
+  clientId: "<managed-identity-client-id>"
+  clusterName: "<aks-cluster-name>"
+  subscriptionId: "<subscription-id>"
+```
+
+To install the chart with the release name my-release:
+
+`helm install my-release oci://ghcr.io/nebed/azure-spot-monitor/charts/azure-spot-monitor --version 1.0.1 -f values.yaml`
+
+This chart installs Azure Spot Monitor into your Kubernetes cluster
+as a Deployment.
+
+{{ template "chart.valuesSection" . }}

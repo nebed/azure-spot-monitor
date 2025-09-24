@@ -99,10 +99,15 @@ affinity:
           - system
       weight: 100
 
+# -- Required parameters --
 azure:
+  # -- The name of the resource group where the AKS cluster is deployed. --
   resourceGroupName: ""
+  # -- The Client ID of the Managed Identity the application can use to access the required endpoints. --
   clientId: ""
+  # -- The name of the AKS cluster. --
   clusterName: ""
+  # -- The Subscription ID where the AKS cluster is deployed. --
   subscriptionId: ""
 
 extraConfig: {}

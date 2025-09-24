@@ -52,7 +52,7 @@ jobs:
           version: v3.14.0
 
       - name: Package Helm chart
-        run: helm package charts/azure-spot-monitor
+        run: helm package helm/charts/azure-spot-monitor
 
       - name: Log in to GHCR (Helm OCI)
         run: |
@@ -62,7 +62,7 @@ jobs:
 
       - name: Package Helm chart
         run: |
-          helm package charts/azure-spot-monitor --destination ./charts-dist
+          helm package helm/charts/azure-spot-monitor --destination ./charts-dist
 
       - name: Push Helm chart to GHCR
         run: |

@@ -66,6 +66,6 @@ jobs:
 
       - name: Push Helm chart to GHCR
         run: |
-          CHART_VERSION=$(yq e '.version' charts/azure-spot-monitor/Chart.yaml)
+          CHART_VERSION=$(yq e '.version' helm/charts/azure-spot-monitor/Chart.yaml)
           helm push ./charts-dist/azure-spot-monitor-${CHART_VERSION}.tgz \
             oci://ghcr.io/${{ github.repository }}/charts

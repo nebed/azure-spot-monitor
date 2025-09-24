@@ -1,6 +1,6 @@
 # Azure Spot Monitor Helm chart
 
-![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
+![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![Version: 1.0.1](https://img.shields.io/badge/Version-1.0.1-informational?style=flat-square) ![AppVersion: 1.0.1](https://img.shields.io/badge/AppVersion-1.0.1-informational?style=flat-square)
 
 Helm chart for deploying [Azure Spot Monitor][] to Kubernetes.
 
@@ -20,7 +20,7 @@ azure:
 
 To install the chart with the release name my-release:
 
-`helm install my-release oci://ghcr.io/nebed/azure-spot-monitor/charts/azure-spot-monitor --version 1.0.0 -f values.yaml`
+`helm install my-release oci://ghcr.io/nebed/azure-spot-monitor/charts/azure-spot-monitor --version 1.0.1 -f values.yaml`
 
 This chart installs Azure Spot Monitor into your Kubernetes cluster
 as a Deployment.

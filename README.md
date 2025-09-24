@@ -41,7 +41,7 @@ azure:
 
 To install the chart with the release name my-release:
 
-`helm install my-release oci://ghcr.io/nebed/azure-spot-monitor/charts/azure-spot-monitor --version 1.0.0 -f values.yaml`
+`helm install my-release oci://ghcr.io/nebed/azure-spot-monitor/charts/azure-spot-monitor --version 1.0.1 -f values.yaml`
 
 ## Metric Reference
 
